@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Blaka+Hollow&family=Bungee+Shade&family=Faster+One&family=Graduate&family=Kranky&family=Libre+Barcode+39&family=Monofett&family=Monsieur+La+Doulaise&family=Nabla&family=Pinyon+Script&family=Poiret+One&family=Press+Start+2P&family=Raleway+Dots&family=Rubik+80s+Fade&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Sacramento&family=Silkscreen&family=Smokum&family=Special+Elite&family=Stick+No+Bills:wght@500&family=Tilt+Prism&family=Turret+Road&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Cabin+Sketch&family=Codystar:wght@300&family=Flow+Circular&family=Hanalei&family=Libre+Barcode+39+Text&family=Monoton&family=Moo+Lah+Lah&family=Rampart+One&family=Rubik+Marker+Hatch&family=Rubik+Maze&family=Rubik+Microbe&family=Rubik+Puddles&display=swap" rel="stylesheet">
+<script>
+  let advisory = {
+    1: "8:30-9:18",
+    2: "9:22-10:09",
+    3: "10:13-11:00",
+    4: "11:04-11:51",
+    lunch: "11:53-12:23",
+    5: "12:25-13:12",
+    "adv": "13:16-13:47",
+    6: "13:51-14:38",
+    7: "14:42-15:30",
+  }
+  let normal = {
+    1: "8:30-9:15",
+    2: "9:19-10:04",
+    3: "10:08-10:53",
+    lunch: "10:55-11:25",
+    4: "11:29-12:14",
+    5: "12:18-13:03",
+    6: "13:07-13:52",
+    7: "13:56-14:41 ",
+    8:"14:45-15:30",
+  }
+  let two_delay = {
+    1: "10:30-11:00",
+    2: "11:04-11:34",
+    3: "11:38-12:08",
+    lunch: "12:12-12:40",
+    4: "12:44-13:14 ",
+    5: "13:18-13:48",
+    6: "13:52-14:22 ",
+    7: "14:26-14:56 ",
+    8: "15:00-15:30",
+  }
+  var two = 0
+  var dooms = 0
+  var img_check = 0
+  var text = 1
+  var r = document.querySelector(':root');
+  var rs = getComputedStyle(r);
+  var seconds_left = 0
+  var period_pick = 0
+  var text_color = rs.getPropertyValue('--tex')
+  var background_color = rs.getPropertyValue('--bac')
+  var hover_color = rs.getPropertyValue('--hov')
+  const queryString = window.location.search;
+  console.log(queryString);
+  const urlParams = new URLSearchParams(queryString);
+  var old_img = "";
+
+  function refresh() {
+    var big_boy_size = document.getElementById("form").value;
+    document.getElementById("data2").style.fontSize = big_boy_size + "vw";
+    document.getElementById("doomsday").style.fontSize = big_boy_size + "vw";
+    var background_color = document.getElementById("bacpicker").value;
+    r.style.setProperty('--bac', background_color);
+    var text_color = document.getElementById("texpicker").value;
+    r.style.setProperty('--tex', text_color);
+    var hover_color = document.getElementById("hovpicker").value;
+    r.style.setProperty('--hov', hover_color);
+    var menu_bord_color = document.getElementById("mebpicker").value;
+    r.style.setProperty('--meb', menu_bord_color);
+    var menu_back_color = document.getElementById("megpicker").value;
+    r.style.setProperty('--meg', menu_back_color);
+    var menu_color = document.getElementById("menpicker").value;
+    r.style.setProperty('--men', menu_color);
+    var body_image = document.getElementById("imag").value;
+    var x = document.getElementById("select").value;
+    r.style.setProperty('--font', x);
+    var text_shadow = document.getElementById("text_shadow").value + "px";
+    r.style.setProperty('--text_shadow', text_shadow);
+    var shadow_color = document.getElementById("shadow_color").value;
+    r.style.setProperty('--shadow_color', shadow_color);
+    var twoshadow_color = document.getElementById("2shadow_color").value;
+    r.style.setProperty('--2shadow', twoshadow_color);
+    document.getElementById("data2").className = document.getElementById("bloom").value;
+    document.getElementById("doomsday").className = document.getElementById("bloom").value;
+    if (body_image.includes("<img") == true) {
+      var body_image1 = body_image.split("=\"");
+      var body_image1 = body_image1[1];
+      var body_image2 = body_image1.split("\" alt");
+      var body_image = body_image2[0]
+      document.getElementById("bd").src = body_image;
+    } else {
+      document.getElementById("bd").src = body_image;
+    }
+
+    //May 23 2024
+
+    date1 = new Date();
+    date2 = new Date("May 23, 2024, 13:30:00");
+    var total_seconds = Math.abs(date2 - date1) / 1000;
+    var days_difference = (total_seconds / (60 * 60 * 24)); // Math.floor
+    days_difference = Math.round(days_difference * 10**document.getElementById("minute_timer").value) / 10**document.getElementById("minute_timer").value;
+    document.getElementById("doomsday").innerHTML = days_difference;
+
+    var broken = "no"
+    let p = Date()
+    document.getElementById("data").innerHTML = p;
+    var day = p.slice(0, 3);
+    let a = p.slice(16, 24);
+    const pp = a.split(":")
+    let hour = parseInt(pp[0])
+    let minute = parseInt(pp[1])
+    let second = parseInt(pp[2])
+    if (two == 0 && day == "None") {
+      var chooser = advisory;
+      var chooser_type = "advisory";
+    }
+    if (two == 0 && day !== "None") {
+      var chooser = normal;
+      var chooser_type = "normal";
+    }
+    if (two == 1) {
+      var chooser = two_delay;
+      var chooser_type = "two";
+    }
+    for (i in chooser) {
+      var halfsies = chooser[i].split("-");
+      var fhalf = halfsies[0].split(":");
+      var shalf = halfsies[1].split(":");
+      var period = i;
+      if (parseInt(fhalf[0]) * 60 + parseInt(fhalf[1]) <= hour * 60 + minute && hour * 60 + minute <= parseInt(shalf[0]) * 60 + parseInt(shalf[1]) && period_pick != 3) {
+        broken = "yes";
+        break;
+      }
+      if (parseInt(fhalf[0]) * 60 + parseInt(fhalf[1]) >= hour * 60 + minute && period_pick == 3) {
+        broken = "yes";
+        period = old_i
+        break;
+      }
+      old_i = i
+    }
+    if (period_pick !== 3) {
+      var distbase = parseInt(shalf[0]) * 60 + parseInt(shalf[1]);
+      var distsub = parseInt(hour) * 60 + parseInt(minute);
+      var dist = distbase - distsub;
+    } else {
+      if (period == 5 && chooser_type == "advisory") {
+        var halfsies = chooser["adv"].split("-");
+        period = "adv"
+      } else {
+        if (period == "adv" && chooser_type == "advisory") {
+          var halfsies = chooser[6].split("-");
+          period = 6
+        } else {
+          if (period == 7) {
+            var halfsies = chooser[1].split("-");
+            period = 1
+          } else {
+            var halfsies = chooser[parseInt(period) + 1].split("-");
+            period = parseInt(period) + 1
+          }
+        }
+        var fhalf = halfsies[0].split(":");
+        var shalf = halfsies[1].split(":");
+        if (period_pick == 3) {
+          var distbase = parseInt(fhalf[0]) * 60 + parseInt(fhalf[1])
+          var distsub = parseInt(hour) * 60 + parseInt(minute)
+          var dist = distbase - distsub
+        } else {
+          var distbase = parseInt(shalf[0]) * 60 + parseInt(shalf[1])
+          var distsub = parseInt(hour) * 60 + parseInt(minute)
+          var dist = distbase - distsub
+        }
+      }
+    }
+    if (broken != "yes") {
+      document.getElementById("data2").innerHTML = "Break"
+      document.getElementById("data1").innerHTML = "Currently no Period";
+      document.getElementById("data3").innerHTML = "";
+      if (text == 0) {
+        document.getElementById("next_period").innerHTML = "";
+        document.getElementById("data1").innerHTML = "";
+        document.getElementById("data").innerHTML = "";
+
+      }
+    } else {
+      if (60 - second < 10) {
+        seconds_left = "0" + (60 - second).toString();
+      } else {
+        if (60 - second == 60) {
+          seconds_left = "00";
+          dist += 1
+        } else {
+          seconds_left = (60 - second).toString();
+        }
+      }
+      document.getElementById("data2").innerHTML = (dist - 1).toString() + ":" + seconds_left;
+      document.getElementById("data1").innerHTML = "Period " + period.toString();
+      document.getElementById("data3").innerHTML = "<br> Next Period at " + shalf[0].toString() + ":" + shalf[1].toString();
+      if (text == 0) {
+        document.getElementById("next_period").innerHTML = "";
+        document.getElementById("data2").innerHTML = (dist - 1).toString() + ":" + seconds_left;
+        document.getElementById("data").innerHTML = "";
+        document.getElementById("data1").innerHTML = "";
+        document.getElementById("data3").innerHTML = "";
+      }
+    }
+  }
+
+  function two_switch() {
+    var chec = "no"
+    if (two == 0) {
+      two = 1;
+      var chec = "yes"
+      document.getElementById("butto").style.backgroundColor = "#000000";
+      document.getElementById("butto").style.color = "#FFFFFF";
+    }
+    if (two == 1 && chec == "no") {
+      two = 0;
+      document.getElementById("butto").style.backgroundColor = null;
+      document.getElementById("butto").style.color = null;
+    }
+  }
+
+  function doomsday() {
+    var chec = "no"
+    if (dooms == 0) {
+      dooms = 1;
+      var chec = "yes"
+      document.getElementById("doom_button").style.backgroundColor = "#000000";
+      document.getElementById("doom_button").style.color = "#FFFFFF";
+      document.getElementById("doomsday").style.display = "block";
+    }
+    if (dooms == 1 && chec == "no") {
+      dooms = 0;
+      document.getElementById("doomsday").style.display = "none";
+      document.getElementById("doom_button").style.backgroundColor = null;
+      document.getElementById("doom_button").style.color = null;
+    }
+  }
+
+  function hide_text() {
+    var chec = "no"
+    if (text == 1) {
+      text = 0;
+      var chec = "yes"
+      document.getElementById("butt").style.backgroundColor = "#000000";
+      document.getElementById("butt").style.color = "#FFFFFF";
+    }
+    if (text == 0 && chec == "no") {
+      text = 1;
+      document.getElementById("next_period").innerHTML = "Your Next Period is In:";
+      document.getElementById("butt").style.backgroundColor = null;
+      document.getElementById("butt").style.color = null;
+    }
+  }
+
+  function break_hide() {
+    var x = document.getElementById("buttons");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      text = 1;
+      document.getElementById("next_period").innerHTML = "Your Next Period is In:";
+      document.getElementById("butt").style.backgroundColor = "#FFFFFF";
+      document.getElementById("butt").style.color = "#000000";
+      document.getElementById("menu_button").style.display = "block";
+    } else {
+      x.style.display = "none";
+      document.getElementById("menu_button").style.display = "none";
+      text = 0;
+      document.getElementById("next_period").innerHTML = "";
+    }
+  }
+
+  function period_picker_a() {
+    if (period_pick !== 1) {
+      document.getElementById("picker_a").style.backgroundColor = "#000000";
+      document.getElementById("picker_a").style.color = "#FFFFFF";
+      /*document.getElementById("picker_b").style.backgroundColor = null;
+      document.getElementById("picker_b").style.color = null; */
+      document.getElementById("picker_c").style.backgroundColor = null;
+      document.getElementById("picker_c").style.color = null;
+      period_pick = 1
+    }
+  }
+
+  function period_picker_b() {
+    if (period_pick !== 2) {
+      document.getElementById("picker_b").style.backgroundColor = "#000000";
+      document.getElementById("picker_b").style.color = "#FFFFFF";
+      document.getElementById("picker_a").style.backgroundColor = null;
+      document.getElementById("picker_a").style.color = null;
+      document.getElementById("picker_c").style.backgroundColor = null;
+      document.getElementById("picker_c").style.color = null;
+      period_pick = 2
+    }
+  }
+
+  function period_picker_c() {
+    if (period_pick !== 3) {
+      document.getElementById("picker_c").style.backgroundColor = "#000000";
+      document.getElementById("picker_c").style.color = "#FFFFFF";
+      document.getElementById("picker_a").style.backgroundColor = null;
+      document.getElementById("picker_a").style.color = null;
+      /*document.getElementById("picker_b").style.backgroundColor = null;
+      document.getElementById("picker_b").style.color = null; */
+      period_pick = 3
+    }
+  }
+
+  function menu_click(x) {
+    if (document.getElementById("left_menu").style.display === "none") {
+      document.getElementById("left_menu").style.display = "block";
+      x.classList.toggle("change");
+    } else {
+      document.getElementById("left_menu").style.display = "none";
+      x.classList.toggle("change");
+    }
+  }
+
+  function hide_menu() {
+    if (document.getElementById("left_menu").style.display == "block") {
+      document.getElementById("left_menu").style.display = "none";
+      document.getElementById("time_t").style.display = "none";
+      if (document.getElementById("menu_button") !== null) {
+        document.getElementById("menu_button").classList.toggle("change");;
+      }
+    }
+  }
+
+  function time_table() {
+    if (document.getElementById("time_t").style.display === "none") {
+      document.getElementById("time_t").style.display = "block";
+    } else {
+      document.getElementById("time_t").style.display = "none";
+    }
+  }
+
+</script>
+<style>
+  :root {
+    --tex: #FFFFFF;
+    --bac: #101010;
+    --hov: #FF8300;
+    --meb: #FFFFFF;
+    --meg: #101010;
+    --men: #FFFFFF;
+    --ima: "";
+    --font: "arial";
+    --text_shadow: 5px;
+    --shadow_color: red;
+    --2shadow: blue;
+  }
+
+  body {
+    background-color: var(--bac);
+    color: var(--tex);
+    font-family: var(--font);
+    background-image: var(--ima);
+    height: 100%;
+  }
+
+        .mmsbell {
+        
+text-decoration: none;
+  padding: 0.5rem;
+  border: 1px solid #333333;
+color:white
+        
+    }
+    
+    
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bd {
+    background-color: var(--bac);
+    color: var(--tex);
+    font-family: arial;
+    /*background-image:var(--ima); */
+    position: fixed;
+    margin-left: -1%;
+    margin-top: -1%;
+    margin-right: -1%;
+    margin-bottom: -1%;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+
+  .container {
+    height: 25px;
+    position: sticky;
+  }
+
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .bottom {
+    position: static;
+    bottom: 0;
+    width: 97%;
+    text-align: right;
+  }
+
+  .button {
+    cursor: cell;
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 7px;
+    display: inline-block;
+  }
+
+  .button:hover {
+    background-color: var(--hov);
+    color: black;
+    transition: 0.25s;
+  }
+
+  .the_big {}
+
+  .the_big1 {
+    text-shadow: var(--text_shadow) var(--text_shadow) var(--text_shadow) var(--shadow_color);
+  }
+
+  .the_big2 {
+    text-shadow: 0 0 calc(var(--text_shadow)*2.5) var(--shadow_color);
+  }
+
+  .the_big3 {
+    text-shadow:
+      var(--text_shadow) var(--text_shadow) calc(var(--text_shadow)) var(--shadow_color),
+      calc(var(--text_shadow)*2) calc(var(--text_shadow)*2) calc(var(--text_shadow)) var(--2shadow);
+  }
+
+  .the_big4 {
+    text-shadow: var(--text_shadow) var(--text_shadow) 0 var(--shadow_color);
+  }
+
+  .the_big5 {
+    text-shadow:
+      var(--text_shadow) var(--text_shadow) 0 var(--shadow_color),
+      calc(var(--text_shadow)*2) calc(var(--text_shadow)*2) 0 var(--2shadow);
+  }
+
+  .the_big6 {
+    text-shadow:
+      0 0 calc(var(--text_shadow)*4) var(--shadow_color),
+      0 0 calc(var(--text_shadow)*5) var(--2shadow);
+  }
+
+  .the_big7 {
+    text-shadow:
+      var(--text_shadow) var(--text_shadow) calc(var(--text_shadow)*4) var(--shadow_color),
+      calc(var(--text_shadow)*2) calc(var(--text_shadow)*2) calc(var(--text_shadow)*5) var(--2shadow);
+  }
+
+  .btn-group button {
+    background-color: white;
+    border: 1px solid grey;
+    /* Green border */
+    color: black;
+    /* White text */
+    width: 50%;
+    padding: 5px;
+    /* Some padding */
+    cursor: cell;
+    border-radius: 7px;
+    display: inline-block;
+  }
+
+  .btn-group button:not(:last-child) {
+    border-right: none;
+    /* Prevent double borders */
+  }
+
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: var(--hov);
+    color: black;
+    transition: 0.25s;
+  }
+
+  .menu {
+    position: absolute;
+    cursor: cell;
+    z-index: 2;
+  }
+
+  .left-menu {
+    position: absolute;
+    margin-left: -7.5px;
+    background: var(--meg);
+    top: 0;
+    min-height: 100%;
+    border: 5px solid var(--meb);
+    border-radius: 10px;
+    z-index: 1;
+  }
+
+  .table-menu {
+    position: absolute;
+    right: 0;
+    background: var(--meg);
+    top: 0;
+
+    border: 5px solid var(--meb);
+    border-radius: 10px;
+    z-index: 1;
+  }
+
+  optgroup {
+    font-family: var(--font);
+  }
+
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: var(--men);
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  .change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  .change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL'10,
+      'wght'400,
+      'GRAD'0,
+      'opsz'48
+  }
+
+</style>
+<!-- || typeof two == 'undefined'></!-->
+<html>
+ <title>Little Bell</title>
+  <body onload="refresh()" id="body">
+    <img class="bd" src="" alt="" id="bd" onerror="this.style.display='none'" onload="this.style.display='block'">
+    <div class="menu" onclick="menu_click(this)" id="menu_button">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <div id="left_menu" class="left-menu" style="display:none;">
+      <br><br>
+      <a href="tag.html">???</a>
+      <button onclick="two_switch()" style="" id="butto" class="button" data-inline="true">Click Me for Two Hour Delay</button>
+      <button onclick="hide_text()" style="" id="butt" class="button" data-inline="true">Click Me to Simplify Screen</button>
+      <button onclick="doomsday()" style="" id="doom_button" class="button" data-inline="true">Toggle Doomsday Timer</button>
+                  <a class="mmsbell" href="index.html">       HS Timer     </a>
+      <p style="color:white;">text-size:<input type="text" name="fname" value="38" size="2" class="button" maxlength="4" id="form"></p>
+      <p style="color:white;" title="Paste [copy image] of the image you would like.">Background-Image:<input type="text" value="" size="2" class="button" placeholder="Optional" id="imag"></p>
+      <p style="color:white;"><input type="color" name="bacpicker" value="#101010" size="1" class="button" id="bacpicker"> : Background-Color<p>
+          <p style="color:white;"><input type="color" name="texpicker" value="#FFA500" size="1" class="button" id="texpicker"> : Text-Color<p>
+              <p style="color:white;"><input type="color" name="hovpicker" value="#FF8300" size="1" class="button" id="hovpicker"> : Hover-Color<p>
+                  <p style="color:white;"><input type="color" name="hovpicker" value="#FFA500" size="1" class="button" id="menpicker"> : Menu-icon-Color<p>
+                      <p style="color:white;"><input type="color" name="hovpicker" value="#ffffff" size="1" class="button" id="mebpicker"> : Menu-Border-Color<p>
+                          <p style="color:white;"><input type="color" name="hovpicker" value="#101010" size="1" class="button" id="megpicker"> : Menu-Background-Color<p>
+                              <div class="btn-group">
+                                <button id="picker_a" onclick="period_picker_a()">End of this period</button>
+                                <!--<button id="picker_b" onclick="period_picker_b()">Automatic</button> ></!-->
+                                <button id="picker_c" onclick="period_picker_c()">Start of next Period</button>
+                              </div>
+                              <br>
+                              <select id='select'>
+
+                                  <option value="arial">arial</option>
+                                  <option value="Comic Sans MS">Comic Sans MS</option>
+                                  <option value="impact">impact</option>
+                                  <option value="Arial Black">Arial Black</option>
+                                  <option value="Garamond">Garamond</option>
+                                  <option value="Luminari">Luminari</option>
+                                  <option value="Sofia">Sofia</option>
+                                  <option value="Rubik Pixels">Rubik Pixels</option>
+                                  <option value="Noto Sans JP">Noto Sans JP</option>
+                                  <option value="Blaka Hollow">Blaka Hollow</option>
+                                  <option value="Bungee Shade">Bungee Shade</option>
+                                  <option value="Faster One">Faster One</option>
+                                  <option value="Graduate">Graduate</option>
+                                  <option value="Kranky">Kranky</option>
+                                  <option value="Monofett">Monofett</option>
+                                  <option value="Monsieur La Doulaise">Monsieur La Doulaise</option>
+                                  <option value="Nabla">Nabla</option>
+                                  <option value="Pinyon Script">Pinyon Script</option>
+                                  <option value="Poiret One">Poiret One</option>
+                                  <option value="Raleway Dots">Raleway Dots</option>
+                                  <option value="Rubik 80s Fade">Rubik 80s Fade</option>
+                                  <option value="Rubik Vinyl">Rubik Vinyl</option>
+                                  <option value="Rubik Wet Paint">Rubik Wet Paint</option>
+                                  <option value="Sacramento">Sacramento</option>
+                                  <option value="Silkscreen">Silkscreen</option>
+                                  <option value="Smokum">Smokum</option>
+                                  <option value="Special Elite">Special Elite</option>
+                                  <option value="Stick No Bills">Stick No Bills</option>
+                                  <option value="Tilt Prism">Tilt Prism</option>
+                                  <option value="Turret Road">Turret Road</option>
+                                  <option value="UnifrakturMaguntia">UnifrakturMaguntia</option>
+                                  <option value="Bungee Outline">Bungee Outline</option>
+                                  <option value="Cabin Sketch">Cabin Sketch</option>
+                                  <option value="Codystar">Codystar</option>
+                                  <option value="Flow Circular">Flow Circular</option>
+                                  <option value="Hanalei">Hanalei</option>
+                                  <option value="Monoton">Monoton</option>
+                                  <option value="Moo Lah Lah">Moo Lah Lah</option>
+                                  <option value="Rampart One">Rampart One</option>
+                                  <option value="Rubik Marker Hatch">Rubik Marker Hatch</option>
+                                  <option value="Rubik Maze">Rubik Maze</option>
+                                  <option value="Rubik Microbe">Rubik Microbe</option>
+                                  <option value="Rubik Puddles">Rubik Puddles</option>
+
+                              </select>
+                              <select id='bloom'>
+                                <optgroup>
+                                  <option value="the_big">none</option>
+                                  <option value="the_big1">shadow</option>
+                                  <option value="the_big3">double shadow</option>
+                                  <option value="the_big4">sharp shadow</option>
+                                  <option value="the_big5">sharp double shadow</option>
+                                  <option value="the_big7">blend shadow</option>
+                                  <option value="the_big2">bloom</option>
+                                  <option value="the_big6">blend bloom</option>
+                                </optgroup>
+                              </select>
+                              <p style="color:white;">shadow-strength:<input type="text" name="fname" value="5" size="2" class="button" maxlength="4" id="text_shadow"></p>
+                              <p style="color:white;">shadow-color:<input type="color" name="fname" value="#FF0000" size="2" class="button" id="shadow_color"></p>
+                              <p style="color:white;">second-shadow-color:<input type="color" name="fname" value="#0000FF" size="2" class="button" id="2shadow_color"></p>
+                              <p style="color:white;">Doomsday-Max-Length:<input type="text" name="fname" value="0" size="2" class="button" maxlength="3" id="minute_timer"></p>
+                              <p style="color:white;">Click timer to toggle all other text</p>
+    </div>
+    <div id="time_t" style="display:none;" class="table-menu">
+      <img src="https://lh3.googleusercontent.com/pw/ABLVV86Csj9LpFRX9KmRxjViwOq6NRIQ7qHT_3OBkBL2sFIJBlgdKanSCUGPqM5WjO-3-SowjALH4tX7FuVLevj8rlbKX_FsOjAcp8nctBlqUbYwc_AfhxpicwE1ZFRVm8Y6h0GsmfRAvfpx28UbqcUcQqjMx2k67aRsWoNN2zKkDZL4tLJ9P9Kt0plLTREotslhJQ9OxpRKx3SWzleTLAhJbbT7XEY581JOh_vYqQYYMiQ2zxIF4OBghFq7qPAxdy25jf2OHtsPKAREy0iVGjO28DZlAhTJlXPIemZEC_r6LKSXNxxyDy2gEgNrdNVtn2ajbEjUa5DgwSS9FUVQmn1Mx8b-TOnkdfi414zqZX5BwaboBD_2qsm9ASZJ-ArULHcYGxfsfCkiCewB_LipOc99lOUAKYM56nJhXZiqp35HJc1nmBlgFA6Nj4HY5vUEa2ha-P65wX90dXWgxfgl2v1fe6OjuqFgAhu5ltsrMWR6j86EjUVu_vu8ZE3bdF1wn6c-V9v_YA2YY7c-tI_wCHlUQbsirdycQPfAWRk9X_itUioe3ks8viiis9Y40SmyHReUb0ZlvBienZjxkz8QUWD_JbQCgJ8KsxxwFMGe_j30xqwCWv6ky1eg1UKVWN7J9Yzk-Ep3oC5_uRjd3X6MDql7rXwr5e2QNAS7iIRkiWkhGtxqq9s_kemkuTKYtygEKL5UJkmRD3WUPzu1fa99gkE9JkdEl9qdMC7mtZPVEbImsNA6GiOAuZpf2V0bhPfGvSm6wiW6ov9zpjlYIM9W95I1anMi5H633f1N4z5U_o-S0rORyG2Z2YjeeL913S39QC5XftB_ZE67fzkaSUWxdJ5yczqnNum3elBBWFHOw3GI-o6IFdDyO4GFzakEGfaiHeLgngi6og=w481-h445-s-no?authuser=0" />
+    </div>
+    <center id="next_period" style="">Your Next Period is In: </center>
+    <center id="data2" style="font-size:250px;cursor:crosshair;" onmouseover="hide_menu()" class="the_big1" onclick="break_hide()"></center>
+    <center id="doomsday" style="font-size:250px;cursor:crosshair;display:none;" onmouseover="hide_menu()" class="the_big1" onclick="break_hide()"></center>
+    <center id="data"></center>
+    <center id="data1"></center>
+    <center id="data3"></center>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="container" id="buttons">
+      <div class="center">
+
+      </div>
+    </div>
+    <br><br>
+    <div class="bottom">
+      <p>By fjf64</p>
+    </div>
+    <script>
+      let updateIntervalId_a = setInterval(refresh, 50);
+      if (typeof onetime == 'undefined') {
+        period_picker_a()
+        onetime = "done"
+      }
+
+    </script>
+  </body>
+
+</html>

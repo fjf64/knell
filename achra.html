@@ -6,17 +6,17 @@
 
 <body style="background: black; color: white">
     <script>
-        if (localStorage.getItem("getaway_time") == undefined)  {
+        if (localStorage.getItem("achra_time") == undefined)  {
             var g = 1;
         }
         else {
-            var g = localStorage.getItem("getaway_time");
+            var g = localStorage.getItem("achra_time");
         }
         function refresh() {
             g = Number(g) + 1;
 //            document.getElementById("g_timer").innerHTML = g;
             document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
-            localStorage.setItem("getaway_time", g);
+            localStorage.setItem("achra_time", g);
         }
 
     </script>

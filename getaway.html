@@ -6,11 +6,11 @@
 
 <body style="background: black; color: white">
     <script>
-        if (localStorage.getItem("getaway_time") == "NaN" || localStorage.getItem("getaway_time") == null)  {
+        if (localStorage.getItem("getaway_time") == undefined)  {
             var g = 1;
         }
         else{
-            localStorage.setItem("getaway_time", g)
+            localStorage.getItem("getaway_time", g)
         }
         function refresh() {
             g += 1;

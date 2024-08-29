@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Snabbit's Emporium</title>
+</head>
+
+<body style="background: black; color: white">
+    <script>
+        
+        var link = localStorage.getItem("custom_hyperlink");
+        
+        document.getElementById('movie').src = link;
+        
+//         document.getElementById("g_test").innerHTML = link;
+        if (localStorage.getItem(link + "_time") == undefined) {
+            var g = 1;
+        } else {
+            var g = localStorage.getItem(link + "_time");
+        }
+
+        function refresh() {
+            g = Number(g) + 1;
+            //            document.getElementById("g_timer").innerHTML = g;
+            document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
+            localStorage.setItem(link + "_time", g);
+        }
+
+    </script>
+
+    <object width="100%" height="100%" style="text-align: center;">
+        <param name="movie" value="a">
+        <embed id="movie" src="" width="100%" height="100%">
+        </embed>
+    </object>
+
+    <p id="g_timer">test</p>
+<!--    <p id="g_test">test</p>-->
+    <script>
+        let updateIntervalId_a = setInterval(refresh, 1000);
+
+    </script>
+</body>
+
+</html>

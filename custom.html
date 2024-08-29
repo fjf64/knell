@@ -13,23 +13,22 @@
     </object>
 
     <p id="g_timer">test</p>
-    <!--    <p id="g_test">test</p>-->
+
     <script>
         function refresh() {
             var link = localStorage.getItem("custom_hyperlink");
             g = Number(g) + 1;
             document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
-            localStorage.setItem(link + "_time", g);
+            localStorage.setItem((link + "_time"), g);
         }
         var link = localStorage.getItem("custom_hyperlink");
 
                 document.getElementById("movie").src = link;
 
-        //         document.getElementById("g_test").innerHTML = link;
-        if (localStorage.getItem(link + "_time") == undefined) {
+        if (localStorage.getItem((link + "_time")) == undefined) {
             var g = 1;
         } else {
-            var g = localStorage.getItem(link + "_time");
+            var g = localStorage.getItem((link + "_time"));
         }
         let updateIntervalId_a = setInterval(refresh, 1000);
 

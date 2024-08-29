@@ -1,37 +1,13 @@
 <html>
-
 <head>
     <title>Snabbit's Emporium</title>
 </head>
+<body style="background: black;">
 
-<body style="background: black; color: white">
-    <script>
-        if (localStorage.getItem("achra_time") == undefined)  {
-            var g = 1;
-        }
-        else {
-            var g = localStorage.getItem("achra_time");
-        }
-        function refresh() {
-            g = Number(g) + 1;
-//            document.getElementById("g_timer").innerHTML = g;
-            document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
-            localStorage.setItem("achra_time", g);
-        }
-
-    </script>
-    
 <object width="100%" height="100%" style="text-align: center;">
     <param name="movie" value="a">
     <embed src="https://html-classic.itch.zone/html/7679817/PoA HTML v0.4.7/index.html" width="100%" height="100%">
     </embed>
 </object>
-
-    <p id="g_timer">test</p>
-    <script>
-        let updateIntervalId_a = setInterval(refresh, 1000);
-        refresh();
-    </script>
 </body>
-
 </html>

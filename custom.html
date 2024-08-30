@@ -15,22 +15,25 @@
     <p id="g_timer">test</p>
 
     <script>
-        function refresh() {
-            var link = localStorage.getItem("custom_hyperlink");
-            g = Number(g) + 1;
-            document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
-            localStorage.setItem((link + "_time"), g);
-        }
         var link = localStorage.getItem("custom_hyperlink");
 
-                document.getElementById("movie").src = link;
-
-        if (localStorage.getItem((link + "_time")) == undefined) {
-            var g = 1;
-        } else {
-            var g = localStorage.getItem((link + "_time"));
+        function refresh() {
+            if (document.hasFocus()) {
+                //            var link = localStorage.getItem("custom_hyperlink");
+                g = Number(g) + 1;
+                document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
+                localStorage.setItem((link + "_time"), g);
+            }
         }
-        let updateIntervalId_a = setInterval(refresh, 1000);
+
+            document.getElementById("movie").src = link;
+
+            if (localStorage.getItem((link + "_time")) == undefined) {
+                var g = 1;
+            } else {
+                var g = localStorage.getItem((link + "_time"));
+            }
+            let updateIntervalId_a = setInterval(refresh, 1000);
 
     </script>
 </body>

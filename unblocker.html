@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Snabbit's Emporium</title>
+</head>
+
+<body style="background: black; color: white">
+    <input class="divSplit" type="url" id="inputBox" name="inputBox" placeholder="Link Here:">
+    <button onclick="tryWrite()">Press to continue</button>
+    <object type="text/html" data="http://www.example.com" id="movie" style="width:100%; height:100%">
+        <p>Link Invalid; This may not be your fault :|</p>
+    </object>
+
+
+
+    <script>
+        function write() {
+            var link = document.getElementById('inputBox').value;
+            console.log(link)
+            document.getElementById("movie").data = link;
+        }
+
+        function tryWrite() {
+            try {
+                write();
+            } catch (error) {
+                
+                console.error(error);
+                
+                // Expected output: ReferenceError: nonExistentFunction is not defined
+                // (Note: the exact output may be browser-dependent)
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

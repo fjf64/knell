@@ -38,6 +38,7 @@
 </head>
 
 <body style="font-size: 2vw; color: white; line-height: .5vw">
+    <p onclick="open('unblocker.html')">Unblocker</p><br>
     <p onclick="custom('swords.html')">Swords and Souls</p><br>
     <p onclick="custom('alxemy.html')">Alxemy</p><br>
     <p onclick="custom('welkin.html')">Great Dungeon in the Sky</p><br>
@@ -224,16 +225,22 @@
     <p onclick="custom('')"></p><br>
     <p onclick="custom('')"></p><br>
     <p onclick="custom('')"></p><br>
-    <p onclick="custom('')"></p><br>
-<!--         <p onclick="custom('')"></p><br> -->
-<!--     <p onclick="custom('link.html')">Custom</p><br> -->
+    <!--         <p onclick="custom('')"></p><br> -->
+    <!--     <p onclick="custom('link.html')">Custom</p><br> -->
 </body>
 <script>
     function custom(link) {
-        
+
         localStorage.setItem("custom_hyperlink", link);
         window.open('custom.html', "_blank");
-//        window.location.href = 'custom.html';
+        //        window.location.href = 'custom.html';
+
+    }
+
+    function open(link) {
+
+        window.open(link, "_blank");
+        //        window.location.href = 'custom.html';
 
     }
 

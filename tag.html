@@ -44,8 +44,9 @@
 </head>
 
 <body style="font-size: 2vw; color: white; line-height: .5vw">
-    <!--     <li onclick="open('unblocker.html')">Unblocker</li> -->
+          
     <ul id="listContainer">
+        <li onclick="openlink('unblocker.html')">Unblocker</li>
         <li onclick="custom('swords.html')">Swords and Souls</li>
         <li onclick="custom('alxemy.html')">Alxemy</li>
         <li onclick="custom('welkin.html')">Great Dungeon in the Sky</li>
@@ -244,7 +245,9 @@
         //        window.location.href = 'custom.html';
 
     }
-
+    function openlink(link) {
+        window.open(link, "_blank");
+    }
     function sortList(ul) {
         var ul = document.getElementById(ul);
 

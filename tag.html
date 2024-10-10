@@ -109,7 +109,7 @@
         <input type="text" id="search" placeholder="Search.." onkeydown="searchLi()" onkeyup="searchLi()" value="">
         <hr style="color: white;margin: .1vw;margin-top: .75vw;">
         <div id="topnav2">
-            <p id="fillIn"></p>
+            <p id="fillIn">-----</p>
         </div>
     </div>
     <ul id="listContainer">
@@ -362,7 +362,7 @@
             } else {
                 let fil = document.getElementById('fillIn')
                 let topnav = document.getElementById('topnav2');
-                fil.innerHTML = "";
+                fil.innerHTML = "-----";
                 fil.onclick = "";
                 topnav.onclick = "";
             }
@@ -372,7 +372,7 @@
             }
             let fil = document.getElementById('fillIn')
             let topnav = document.getElementById('topnav2');
-            fil.innerHTML = "";
+            fil.innerHTML = "-----";
             fil.onclick = "";
             topnav.onclick = "";
         }

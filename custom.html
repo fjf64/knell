@@ -2,9 +2,12 @@
 
 <head>
     <title>Snabbit's Emporium</title>
+    <style>
+    
+    </style>
 </head>
 
-<body style="background: black; color: white">
+<body style="background: black; color: white" id="body">
 
     <object width="100%" height="100%" style="text-align: center;">
         <param name="movie" value="a">
@@ -12,28 +15,41 @@
         </embed>
     </object>
 
-    <p id="g_timer">test</p>
+    <p id="g_timer" style="display: inline-block;">test</p>
+    <button style="display: inline-block;" onclick="back()">Back</button>
 
     <script>
         var link = localStorage.getItem("custom_hyperlink");
 
         function refresh() {
             if (document.hasFocus()) {
-                //            var link = localStorage.getItem("custom_hyperlink");
                 g = Number(g) + 1;
                 document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
                 localStorage.setItem((link + "_time"), g);
             }
+            console.log(document.activeElement)
+            if (document.getElementById("movie") === document.activeElement) {
+                document.getElementById("body")({
+                    preventScroll: true
+                });
+            } else {
+                document.getElementById("body")({
+                    preventScroll: false
+                });
+            }
         }
 
-            document.getElementById("movie").src = link;
+        document.getElementById("movie").src = link;
 
-            if (localStorage.getItem((link + "_time")) == undefined) {
-                var g = 1;
-            } else {
-                var g = localStorage.getItem((link + "_time"));
-            }
-            let updateIntervalId_a = setInterval(refresh, 1000);
+        if (localStorage.getItem((link + "_time")) == undefined) {
+            var g = 1;
+        } else {
+            var g = localStorage.getItem((link + "_time"));
+        }
+        function back() {
+            history.go(-1);
+        }
+        let updateIntervalId_a = setInterval(refresh, 1000);
 
     </script>
 </body>

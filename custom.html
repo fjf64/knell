@@ -3,8 +3,8 @@
 <head>
     <title>Snabbit's Emporium</title>
     <style>
-    
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body style="background: black; color: white" id="body">
@@ -17,25 +17,18 @@
 
     <p id="g_timer" style="display: inline-block;">test</p>
     <button style="display: inline-block;" onclick="back()">Back</button>
+    <button style="display: inline-block;" onclick="scrollLock()">Remove Bottom Bar</button>
 
     <script>
         var link = localStorage.getItem("custom_hyperlink");
+        var scrollLockToggle = false
+        var lastkeypress = ''
 
         function refresh() {
             if (document.hasFocus()) {
                 g = Number(g) + 1;
                 document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
                 localStorage.setItem((link + "_time"), g);
-            }
-            console.log(document.activeElement)
-            if (document.getElementById("movie") === document.activeElement) {
-                document.getElementById("body")({
-                    preventScroll: true
-                });
-            } else {
-                document.getElementById("body")({
-                    preventScroll: false
-                });
             }
         }
 
@@ -46,9 +39,36 @@
         } else {
             var g = localStorage.getItem((link + "_time"));
         }
+
         function back() {
             history.go(-1);
         }
+
+        function scrollLock() {
+            if (scrollLockToggle == false) {
+                $('body').css({
+                    'overflow': 'hidden'
+                });
+                $(document).bind('scroll', function() {
+                    window.scrollTo(0, 0);
+
+                });
+                $('html,body').scrollTop(0);
+            } else {
+                $(document).unbind('scroll');
+                $('body').css({
+                    'overflow': 'visible'
+                });
+            }
+        }
+        $(document).bind('keypress', function(event) {
+
+            console.log((lastkeypress == 102 && event.which === 57))
+            if (lastkeypress == 102 && event.which === 57) {
+                scrollLock();
+            }
+            lastkeypress = event.which;
+        });
         let updateIntervalId_a = setInterval(refresh, 1000);
 
     </script>

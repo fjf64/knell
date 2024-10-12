@@ -3,21 +3,52 @@
 <head>
     <title>Snabbit's Emporium</title>
     <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            /*  border-bottom: 1px dotted black;*/
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            border-style: solid;
+            border-color: white;
+            border-width: .15vw;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            left: 100%;
+            top: -150%;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body style="background: black; color: white" id="body">
-
     <object width="100%" height="100%" style="text-align: center;">
         <param name="movie" value="a">
         <embed id="movie" src="" width="100%" height="100%">
         </embed>
     </object>
+    
 
     <p id="g_timer" style="display: inline-block;">test</p>
-    <button style="display: inline-block;" onclick="back()">Back</button>
-    <button style="display: inline-block;" onclick="scrollLock()">Remove Bottom Bar</button>
+    <button style="display:none;" onclick="back()" id="backButton">Back</button>
+    <button style="display: inline-block;" onclick="scrollLock()" class="tooltip">Remove Bottom Bar
+        <span class="tooltiptext">f+9 while not selecting game to toggle</span></button>
 
     <script>
         var link = localStorage.getItem("custom_hyperlink");
@@ -54,21 +85,32 @@
 
                 });
                 $('html,body').scrollTop(0);
+                scrollLockToggle = true
             } else {
                 $(document).unbind('scroll');
                 $('body').css({
                     'overflow': 'visible'
                 });
+                scrollLockToggle = false
             }
         }
-        $(document).bind('keypress', function(event) {
 
-            if (lastkeypress == 102 && event.which === 57) {
-                scrollLock();
-            }
-            lastkeypress = event.which;
+        $(document).ready(function() {
+
+            $(document).bind('keypress', function(event) {
+
+                if (lastkeypress == 102 && event.which === 57) {
+                    scrollLock();
+                }
+                lastkeypress = event.which;
+            });
+
         });
         let updateIntervalId_a = setInterval(refresh, 1000);
+        const backWhiteList = ['https://www.dolldivine.com/dress-up/princess-dress-up-games', 'https://www.azaleasdolls.com/']
+        if (backWhiteList.includes(link)) {
+            document.getElementById('backButton').style.display = 'inline-block';
+        }
 
     </script>
 </body>

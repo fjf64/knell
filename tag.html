@@ -1,389 +1,134 @@
-<html lang="en">
-<!--DEPRECEATED!!!!!!!!!!!!!!!!!!!!!  -->
+<html>
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Hub</title>
+    <title>Snabbit's Emporium</title>
     <style>
-        a:link {
-            color: white;
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            /*  border-bottom: 1px dotted black;*/
         }
 
-        a:visited {
-            color: white;
-        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
 
-        html {
-            height: 500%;
-        }
-
-        body {
-            -webkit-column-count: 4;
-            -webkit-column-gap: 3vw;
-            -moz-column-count: 4;
-            -moz-column-gap: 3vw;
-            -o-column-count: 4;
-            -o-column-gap: 3vw;
-            column-count: 4;
-            /*            column-gap: 1vw;*/
-            background-image: linear-gradient(#293826, black);
-            /*            height: 100%;*/
-            margin: 1vw;
-            margin-top: 2vw;
-            /*            margin*/
-            background-size: cover;
-            background-repeat: no-repeat;
-            /*            background-attachment: fixed;*/
-        }
-
-        li {
-            /*            margin: 10%;*/
-            line-height: 120%;
-        }
-
-        /*
-        .highlighted {
-            color=
-        }
-*/
-
-        #search {
-            border: none;
-            padding-left: 1vw;
-            padding-right: 1vw;
-            padding-bottom: .5vw;
-            padding-top: .5vw;
+            color: #fff;
             text-align: center;
+            border-radius: 6px;
+            border-style: solid;
+            border-color: white;
+            border-width: .15vw;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            left: 100%;
+            top: -150%;
         }
 
-        /*        .marked {}*/
-
-        mark {
-            background-color: white;
-            color: black;
-        }
-
-        #fillIn {
-            border: white;
-            word-wrap: break-word;
-            font-size: 1vw
-        }
-
-        .topnav {
-            width: 60%;
-            height: 15%;
-            background: black;
-            display: inline-block;
-            padding: 1vw;
-            padding-bottom: .25vw;
-            border-radius: 1vw;
-            text-align: center
-        }
-
-        #search {
-            width: 100%;
-            border-radius: .5vw;
-        }
-
-        #search:focus {
-            outline-style: solid;
-            outline-color: #293826;
-        }
-
-        #search::selection {
-            background: #293826;
-        }
-
-        #topnav2 {
-            width: 100%;
-           background: white;
-            height: 100%;
-            display: inline-block;
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
         }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
-<body style="font-size: 2vw; color: white; line-height: .5vw">
-    <div class="topnav" id="topnav">
-        <input type="text" id="search" placeholder="Search.." onkeydown="searchLi()" onkeyup="searchLi()" value="">
-        <hr style="color: white;margin: .1vw;margin-top: .75vw;">
-        <div id="topnav2">
-            <p id="fillIn">-----</p>
-        </div>
-    </div>
-    <ul id="listContainer">
-        <li onclick="openlink('unblocker.html')">Unblocker</li>
-        <li onclick="custom('swords.html')">Swords and Souls</li>
-        <li onclick="custom('alxemy.html')">Alxemy</li>
-        <li onclick="custom('welkin.html')">Great Dungeon in the Sky</li>
-        <li onclick="custom('voidling.html')">Null Space: Last Legacy</li>
-        <li onclick="custom('tagging.html')">Tag</li>
-        <li onclick="custom('https://www.rapidwebapp.com/game/burritobison/launchalibre/index.html')">Burrito Bison Launcha Libre</li>
-        <li onclick="custom('paperclips.html')">Universal Paperclips</li>
-        <li onclick="custom('gun_knight.html')">Gun Knight</li>
-        <li onclick="custom('10mins.html')">10 Minutes Till Dawn</li>
-        <li onclick="custom('frog.html')">Die in the Dungeon</li>
-        <li onclick="custom('shogun.html')">Shogun Showdown</li>
-        <li onclick="custom('meow.html')">Nip for Speed</li>
-        <li onclick="custom('myst.html')">Myst</li>
-        <li onclick="custom('genemon.html')">Genemon</li>
-        <li onclick="custom('bases-loaded.html')">Bases Loaded</li>
-        <li onclick="custom('eggdog.html')">Eggdog</li>
-        <li onclick="custom('download-ram.html')">Download Ram</li>
-        <li onclick="custom('final-mountain.html')">The Mountain is Final</li>
-        <li onclick="custom('clown.html')">Unlikely Clown</li>
-        <li onclick="custom('friday.html')">Friday Night Funkin'</li>
-        <li onclick="custom('court.html')">Sort the Court</li>
-        <li onclick="custom('airtime.html')">Airtime Media</li>
-        <li onclick="custom('ruins.html')">Into Ruins</li>
-        <li onclick="custom('fara.html')">FARA</li>
-        <li onclick="custom('lesser-evil.html')">The Lesser Evil</li>
-        <li onclick="custom('deep.html')">Deep Dungeon</li>
-        <li onclick="custom('curseball.html')">Curseball</li>
-        <!--<li onclick="custom('engine.html" style="font-size:50;')">Infernal Engine Defender</li>-->
-        <li onclick="custom('ducksoup.html')">Ducksoup Dungeon</li>
-        <li onclick="custom('overdisk.html')">OVERDISK</li>
-        <li onclick="custom('forward.html')">Forward</li>
-        <li onclick="custom('kraft.html')">Kraft and Slash</li>
-        <li onclick="custom('lost-for-swords.html')">Lost for Swords</li>
-        <li onclick="custom('drift-hunters.html')">Drift Hunters</li>
-        <li onclick="custom('apocalypse.html')">Drift Apocalypse</li>
-        <li onclick="custom('touge.html')">Touge Drift</li>
-        <li onclick="custom('goblet.html')">Three Goblets</li>
-        <li onclick="custom('bstars.html')">Basketball Stars</li>
-        <li onclick="custom('balls.html')">99 Balls</li>
-        <li onclick="custom('ent.html')">Ent</li>
-        <li onclick="custom('signal_garden.html')">Signal Garden</li>
-        <li onclick="custom('reel.html')">Reel</li>
-        <li onclick="custom('spirit_dung.html')">Spirit Dungeons</li>
-        <li onclick="custom('tiny_gen.html')">Tiny Genesis</li>
-        <li onclick="custom('gridle.html')">Gridle</li>
-        <!--<li onclick="custom('download-ram.html')">Download Simulator</li>  -->
-        <li onclick="custom('knight.html')">Progress Knight</li>
-        <li onclick="custom('fast_p_knight.html')">Fast Progress Knight Quest</li>
-        <li onclick="custom('tree.html')">Incremental Skill Tree</li>
-        <li onclick="custom('coffee.html')">Coffee Drinker</li>
-        <li onclick="custom('dataminer.html')">Dataminer</li>
-        <li onclick="custom('idle_invaders.html')">Idle Invaders</li>
-        <li onclick="custom('vogue.html')">Vogue</li>
-        <li onclick="custom('1999.html')">Simpocalypse</li>
-        <li onclick="custom('orchestrate.html')">Orchestrate</li>
-        <li onclick="custom('plant_dad.html')">Plant Dad</li>
-        <li onclick="custom('terraforma.html')">Terraforma</li>
-        <li onclick="custom('fall_ball.html')">Fall Ball Fall</li>
-        <li onclick="custom('boba.html')">Boba Simulator</li>
-        <li onclick="custom('monkeys.html')">Infinite Monkeys</li>
-        <li onclick="custom('tiny_fishing.html')">Tiny Fishing</li>
-        <li onclick="custom('catuie.html')">Catfish Cuties</li>
-        <li onclick="custom('f_trouble.html')">Fishing Trouble</li>
-        <li onclick="custom('f_furious.html')">The Fish and the Furious</li>
-        <li onclick="custom('f_stealth.html')">Stealth Fishing</li>
-        <!--<li onclick="custom('f_sniper.html')">Hook, Line, Sniper</li>-->
-        <li onclick="custom('f_catfish.html')">Cat Fish Catfishing</li>
-        <li onclick="custom('humaning.html')">Humaning</li>
-        <li onclick="custom('f_generic.html')">Generic Fishing Game</li>
-        <li onclick="custom('f_bay.html')">Maerl Bay</li>
-        <li onclick="custom('riba.html')">Riba</li>
-        <li onclick="custom('tuna.html')">Tuna</li>
-        <li onclick="custom('further_still.html')">Further Still</li>
-        <li onclick="custom('plague.html')">Plague Times</li>
-        <li onclick="custom('pestidie.html')">Pestidie</li>
-        <li onclick="custom('zoxel.html')">Zoxel</li>
-        <li onclick="custom('runie.html')">Runiestory</li>
-        <li onclick="custom('b_a_g.html')">Blood and Goods</li>
-        <li onclick="custom('b_lancer.html')">Bright Lancer</li>
-        <li onclick="custom('l_tactics.html')">Lancer Tactics</li>
-        <li onclick="custom('mobs.html')">Mobs Inc.</li>
-        <li onclick="custom('globeba.html')">Globeba</li>
-        <li onclick="custom('pigeon.html')">Pigeon Ascent</li>
-        <li onclick="custom('hole.html')">Hole Digging Simulator</li>
-        <li onclick="custom('blast.html')">Blastronaut</li>
-        <li onclick="custom('achra.html')">Achra</li>
-        <li onclick="custom('r_snipers.html')">Rooftop Snipers</li>
-        <li onclick="custom('g_redux.html')">Gun Mayhem Redux</li>
-        <li onclick="custom('chronicle.html')">Your Chronicle</li>
-        <!--<li onclick="custom('s_grinder.html')">Soul Grinder</li>-->
-        <li onclick="custom('a_war.html')">Age of War</li>
-        <li onclick="custom('https://f.kbhgames.com/RS/game.php?r=//f.kbhgames.com/2018/swf/ageofwar2.swf')">Age of War 2</li>
-        <li onclick="custom('getaway.html')">Getaway Shootout</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/7340296/index.html')">Super Retro Chase</li>
-        <li onclick="custom('b_base.html')">Backyard Baseball</li>
-        <li onclick="custom('b_base97.html')">Backyard Baseball 1997</li>
-        <li onclick="custom('s_fighters.html')">Super Fighters</li>
-        <!-- <li onclick="custom('deck_adventures.html')">Deck Adventures</li> -->
-        <li onclick="custom('kittens_game.html')">Kittens Game</li>
-        <!-- <li onclick="custom('spaceplan.html')">SPACEPLAN</li> -->
-        <li onclick="custom('c_apocalypse.html')">CLICKPOCALYPSE</li>
-        <li onclick="custom('a_dimensions.html')">Antimatter Dimensions</li>
-        <li onclick="custom('p_emerald.html')">Pokemon Emerald</li>
-        <li onclick="custom('p_sapphire.html')">Pokemon Sapphire</li>
-        <!-- <li onclick="custom('pokeclicker.html')">Pokeclicker</li> -->
-        <li onclick="custom('suika.html')">Suika</li>
-        <!-- <li onclick="custom('c_clicker.html')">Cookie Clicker</li> -->
-        <li onclick="custom('slow_roads.html')">Slow Roads</li>
-        <!-- <li onclick="custom('polytrack.html')">Polytrack</li> -->
-        <li onclick="custom('tanuki.html')">Tanuki Sunset</li>
-        <li onclick="custom('bitburner.html')">Bitburner</li>
-        <li onclick="custom('sage.html')">The Tree</li>
-        <li onclick="custom('p_adventure.html')">Path of Adventure</li>
-        <li onclick="custom('cave.html')">Cave</li>
-        <li onclick="custom('hydra.html')">Hydra</li>
-        <li onclick="custom('space_ghosts.html')">Space Ghosts</li>
-        <li onclick="custom('sky_factory.html')">Sky Farm</li>
-        <li onclick="custom('d_on_d.html')">Defenders on Deck</li>
-        <li onclick="custom('c_hounds.html')">Crater Hounds</li>
-        <li onclick="custom('don.html')">Destructodon</li>
-        <li onclick="custom('rewriter.html')">Rewriter</li>
-        <li onclick="custom('wagon.html')">You Lost a Wagon Wheel</li>
-        <li onclick="custom('offroad.html')">Endless Offroad Driving</li>
-        <li onclick="custom('lurk.html')">Lurk, Leap, Loot</li>
-        <li onclick="custom('holding.html')">Bag of Holding</li>
-        <li onclick="custom('roguepoker.html')">Rogue Poker</li>
-        <li onclick="custom('druid.html')">Druid</li>
-        <li onclick="custom('ghoul.html')">Ghoul Master</li>
-        <li onclick="custom('hunted.html')">Hunted</li>
-        <li onclick="custom('p_pirate.html')">Pico Pirate</li>
-        <li onclick="custom('m_dungeon.html')">Mondar's Dungeon</li>
-        <li onclick="custom('civhero.html')">Civhero</li>
-        <li onclick="custom('h_tycoon.html')">Hardware Tycoon</li>
-        <li onclick="custom('s_stealy.html')">Sneaky Stealy</li>
-        <li onclick="custom('streamline.html')">Streamline</li>
-        <li onclick="custom('archi.html')">4x4 Archipelago</li>
-        <li onclick="custom('titan.html')">Enter the Titan</li>
-        <li onclick="custom('cab.html')">Cab Ride</li>
-        <li onclick="custom('aeronaut.html')">Aeronaut</li>
-        <li onclick="custom('n_showdown.html')">Nightclub Showdown</li>
-        <li onclick="custom('h_miami.html')">Superhotline Miami</li>
-        <li onclick="custom('r_knight.html')">Roulette Knight</li>
-        <li onclick="custom('v_trails.html')">Vapor Trails</li>
-        <li onclick="custom('f_dungeon.html')">Folder Knight</li>
-        <li onclick="custom('b_resin.html')">Black Resin</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/7579409/Neon Knives/index.html')">Neon Knives</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1270315/index.html?v=1574336026')">Paddle Wars</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/7362417/SilhouetteShowdown080_HTML/index.html')">Silhouette Showdown</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1788560/[EN-US] [HTML5] Pencil Peril 0.5.3/index.html?v=1574649473')">Pencil Peril</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/2215242/LazerGrrl_WebGL_24/index.html?v=1591301800')">Lazer Grrl</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/989148/index.html?v=1542780900')">Toaster Ball</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1897122/index.html?v=1583444747')">Cat's Cradle</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/5091939/Ruins Of Mitriom HTML5/index.html')">Ruins of Mitriom</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/6774401/Pikwip/index.html')">Pikwip</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1972674/MyRustySubmarineWebGL/index.html?v=1583444505')">Rusty Submarine</li>
-        <li onclick="custom('https://weentermakesgames.itch.io/monster-battlegrounds')">Monster Battle Grounds</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/11292167/index.html')">Rodland of Pipes</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/9093234/index.html')">Island of Mine</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/8513899/index.html')">Terra</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1933516/index.html?v=1583444642')">Trust Me, I Got This</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/2933435/web/index.html')">Disco Elysium - Gameboy</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/10930832/index.html')">Twilight Tower</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/4267779/IntoTheDeepWeb/index.html')">Into the Deep Web</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/2357483/index.html')">Aground</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/11294118/index.html')">Untrusted</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/5335672-634726/index.html')">Trigaea</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/11338559/web/index.html')">The Fallen Crown</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/1848413/Web_v0.32/index.html?v=1577643709')">Irori</li>
-        <li onclick="custom('//f.kbhgames.com/emujs/play.php?c=gba&f=pokemon-light-platinum.gba')">Pokemon Light Platinum</li>
-        <li onclick="custom('https://retrobowlcollege.co/retro-bowl/')">Retro Bowl</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/4928805/index.html')">Goblin Gambler</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/10346171/index.html')">Gambler's Curse</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/11019359/WebGL/index.html')">Gamble Gauntlet</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/6227083/Gumbling Gunner v2/index.html')">Gambling Gunner</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/6150098-595720/index.html')">Gambling Wizard</li>
-        <li onclick="custom('https://html-classic.itch.zone/html/6154930/index.html')">Gamble Modifier</li>
-        <li onclick="custom('https://fjf64.github.io/2048Fork/')">2048</li>
-        <li onclick="custom('https://cyberzhg.github.io/2048/')">2147483648</li>
-        <li onclick="custom('https://eaglercraftx.pages.dev/')">Minecraft 1.8.8</li>
-        <li onclick="custom('https://ubggames.com/library/NEW/BurritoBisonRevenge/?gd_sdk_referrer_url=https://ubggames.com/play/burrito-bison-revenge')">Burrito Bison Revenge</li>
-        <li onclick="custom('https://www.azaleasdolls.com/')">Azaleas Dolls</li>
-        <li onclick="custom('https://www.dolldivine.com/dress-up/princess-dress-up-games')">Princess Dress-Up Games</li>
-    </ul>
-    <!--         <li onclick="custom('')"></li> -->
-    <!--     <li onclick="custom('link.html')">Custom</li> -->
-    <br>
-    <hr style="color: white;">
-    <ul id="new" style="display: block;position: absolute">
-        <p>Newest Games:</p>
-    </ul>
-</body>
-<script>
-    function custom(link) {
+<body style="background: black; color: white" id="body">
+    <object width="100%" height="100%" style="text-align: center;">
+        <param name="movie" value="a">
+        <embed id="movie" src="" width="100%" height="100%">
+        </embed>
+    </object>
 
-        localStorage.setItem("custom_hyperlink", link);
-        window.open('custom.html', "_blank");
-        //        window.location.href = 'custom.html';
 
-    }
+    <p id="g_timer" style="display: inline-block;">test</p>
+    <button style="display:none;" onclick="back()" id="backButton">Back</button>
+    <button style="display: inline-block;" onclick="scrollLock()" class="tooltip">Remove Bottom Bar
+        <span class="tooltiptext">f+9 while not selecting game to toggle</span></button>
 
-    function openlink(link) {
-        window.open(link, "_blank");
-    }
+    <script>
+        const pageAccessedByReload = (
+            (window.performance.navigation && window.performance.navigation.type === 1) ||
+            window.performance
+            .getEntriesByType('navigation')
+            .map((nav) => nav.type)
+            .includes('reload')
+        );
+        
+        
+        var link = localStorage.getItem("custom_hyperlink");
+        var scrollLockToggle = false
+        var lastkeypress = ''
 
-    function sortList(ul) {
-        var ul = document.getElementById(ul);
-
-        Array.from(ul.getElementsByTagName("LI"))
-            .sort((a, b) => a.textContent.localeCompare(b.textContent))
-            .forEach(li => ul.appendChild(li));
-    }
-
-    function newestGames(amount) {
-        var ul = document.getElementById('listContainer');
-        //        document.getElementById("new").appendChild(node);
-        while (amount > 0) {
-            document.getElementById('new').appendChild((Array.from(ul.getElementsByTagName("LI"))[Array.from(ul.getElementsByTagName("LI")).length - amount]).cloneNode(true))
-
-            //        console.log(Array.from(ul.getElementsByTagName("LI"))[Array.from(ul.getElementsByTagName("LI")).length - amount])
-            amount--
-        }
-
-    }
-
-    function searchLi() {
-        let ul = document.getElementById("listContainer");
-        let marked = 0
-        let markedlist = []
-        if (document.getElementById('search').value !== "") {
-            for (let y in Array.from(ul.getElementsByTagName("LI"))) {
-                Array.from(ul.getElementsByTagName("LI"))[y].innerHTML = Array.from(ul.getElementsByTagName("LI"))[y].innerHTML.replace("<mark>", "").replace("</mark>", "")
-
-                let x = Array.from(ul.getElementsByTagName("LI"))[y]
-                if (x.innerHTML.toLowerCase().includes(document.getElementById('search').value) == true) {
-                    markedlist.push((Array.from(ul.getElementsByTagName("LI"))[y]).cloneNode(true))
-                    Array.from(ul.getElementsByTagName("LI"))[y].innerHTML = "<mark>" + x.innerHTML + "</mark>"
-                    marked += 1
-
-                }
-            }
-            if (marked >= 1) {
-                let copy = markedlist[0];
-                let fil = document.getElementById('fillIn');
-                let topnav = document.getElementById('topnav2');
-                fil.innerHTML = copy.innerHTML;
-                fil.onclick = copy.onclick;
-                topnav.onclick = copy.onclick;
-            } else {
-                let fil = document.getElementById('fillIn')
-                let topnav = document.getElementById('topnav2');
-                fil.innerHTML = "-----";
-                fil.onclick = "";
-                topnav.onclick = "";
-            }
+        if (pageAccessedByReload == false) {
+            var link = localStorage.getItem("custom_hyperlink");
+            sessionStorage.setItem("refresh_saver", link);
         } else {
-            for (let y in Array.from(ul.getElementsByTagName("LI"))) {
-                Array.from(ul.getElementsByTagName("LI"))[y].innerHTML = Array.from(ul.getElementsByTagName("LI"))[y].innerHTML.replace("<mark>", "").replace("</mark>", "")
-            }
-            let fil = document.getElementById('fillIn')
-            let topnav = document.getElementById('topnav2');
-            fil.innerHTML = "-----";
-            fil.onclick = "";
-            topnav.onclick = "";
+             var link = sessionStorage.getItem("refresh_saver");
         }
 
-    }
-    newestGames(20)
-    sortList('listContainer')
-    //    let updateIntervalId_b = setInterval(searchLi, 2000);
+        function refresh() {
+            if (document.hasFocus()) {
+                g = Number(g) + 1;
+                document.getElementById("g_timer").innerHTML = Math.floor(g / 3600) + ":" + Math.floor((g % 3600) / 60) + ":" + (g % 60);
+                localStorage.setItem((link + "_time"), g);
+            }
+        }
 
-</script>
+        document.getElementById("movie").src = link;
+
+        if (localStorage.getItem((link + "_time")) == undefined) {
+            var g = 1;
+        } else {
+            var g = localStorage.getItem((link + "_time"));
+        }
+
+        function back() {
+            history.go(-1);
+        }
+
+        function scrollLock() {
+            if (scrollLockToggle == false) {
+                $('body').css({
+                    'overflow': 'hidden'
+                });
+                $(document).bind('scroll', function() {
+                    window.scrollTo(0, 0);
+
+                });
+                $('html,body').scrollTop(0);
+                scrollLockToggle = true
+            } else {
+                $(document).unbind('scroll');
+                $('body').css({
+                    'overflow': 'visible'
+                });
+                scrollLockToggle = false
+            }
+        }
+
+        $(document).ready(function() {
+            window.open('zz_tag.html', "_self");
+            $(document).bind('keypress', function(event) {
+
+                if (lastkeypress == 102 && event.which === 57) {
+                    scrollLock();
+                }
+                lastkeypress = event.which;
+            });
+
+        });
+        let updateIntervalId_a = setInterval(refresh, 1000);
+        const backWhiteList = ['https://www.dolldivine.com/dress-up/princess-dress-up-games', 'https://www.azaleasdolls.com/']
+        if (backWhiteList.includes(link)) {
+            document.getElementById('backButton').style.display = 'inline-block';
+        }
+
+    </script>
+</body>
 
 </html>
